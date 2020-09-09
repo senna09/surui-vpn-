@@ -1,0 +1,61 @@
+echo "# surui-vpn-" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M master
+git remote add origin https://github.com/senna09/surui-vpn-.git
+git push -u origin master
+
+
+{
+  "inbound": {
+    "port": xxxxx,
+    "listen": "xxxx",
+    "protocol": "socks",
+    "settings": {
+      "auth": "noauth",
+      "udp": true
+    }
+  },
+  "outbound": {
+    "protocol": "vmess",
+    "settings": {
+      "vnext": [
+        {
+          "address": "xxxxx",
+          "port": 443,
+          "users": [
+            {
+              "id": "xxxxxx",
+              "security": "none",
+              "alterId": 0
+            }
+          ]
+        }
+      ]
+    },
+    "streamSettings": {
+      "network": "ws",
+      "security": "tls",
+      "tlsSettings": {
+        "allowInsecure": false
+      },
+      "wsSettings": {
+        "path": "xxxxxx"
+      }
+    },
+     "mux": {
+        "enabled": true
+    }
+  },
+  "policy": {
+    "levels": {
+        "0": {
+            "uplinkOnly": 0,
+            "downlinkOnly": 0,
+            "bufferSize": 0,
+            "connIdle": 30
+        }
+    }
+  }
+}
